@@ -32,13 +32,17 @@ void selectionSort(int arr[], int size, int swapHolder[])
             if(arr[j] < arr[min_idx])
             {
                 min_idx = j;
-                temp = arr[i];
-                arr[i] = arr[min_idx];
-                arr[min_idx] = temp;
-
-                swapHolder[arr[min_idx]]++;
-                swapHolder[arr[i]]++;
             }
+        }
+
+        if(min_idx != i)
+        {
+            temp = arr[i];
+            arr[i] = arr[min_idx];
+            arr[min_idx] = temp;
+
+            swapHolder[arr[min_idx]]++;
+            swapHolder[arr[i]]++;
         }
     }
 
@@ -72,11 +76,11 @@ void printArray(int swapHolder[], int arr[], int size)
     int totalSwaps = 0;
     for(int i = 0; i < size; i++)
     {
-        printf("%d: %d number of times that %d is swapped\n", arr[i], swapHolder[arr[i]], arr[i]);
+        printf("%d: %d\n", arr[i], swapHolder[arr[i]]);
         totalSwaps += swapHolder[arr[i]];
     }
 
-    printf("%d total swaps\n\n", totalSwaps/2);
+    printf("%d\n", totalSwaps/2);
 }
 
 
@@ -92,22 +96,22 @@ int main()
     int selectionSwapHolder2[100] = {0};
 
     bubbleSort(array1, arrSize, bubbleSwapHolder1);
-    printf("array1:\n");
+    printf("array1 bubble sort:\n");
     printArray(bubbleSwapHolder1, array1, arrSize);
 
     bubbleSort(array2, arrSize, bubbleSwapHolder2);
-    printf("array2:\n");
+    printf("array2 bubble sort:\n");
     printArray(bubbleSwapHolder2, array2, arrSize);
 
     resetArr1(array1);
     resetArr2(array2, arrSize);
 
     selectionSort(array1, arrSize, selectionSwapHolder1);
-    printf("array1:\n");
+    printf("array1 selection sort:\n");
     printArray(selectionSwapHolder1, array1, arrSize);
 
     selectionSort(array2, arrSize, selectionSwapHolder2);
-    printf("array2:\n");
+    printf("array2 selection sort:\n");
     printArray(selectionSwapHolder2, array2, arrSize);
 
     return 0;
